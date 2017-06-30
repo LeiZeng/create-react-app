@@ -38,7 +38,7 @@ module.exports = function(
   const useYarn = fs.existsSync(path.join(appPath, 'yarn.lock'));
 
   // Copy over some of the devDependencies
-  appPackage.dependencies = appPackage.dependencies || {
+  appPackage.dependencies = Object.assign({
     '@types/jest': '^20.0.1',
     '@types/node': '^8.0.1',
     '@types/react': '^15.0.31',
@@ -61,14 +61,15 @@ module.exports = function(
     'redux-storage-decorator-filter': '^1.1.8',
     'redux-storage-engine-localstorage': '^1.1.4',
     'redux-thunk': '^2.2.0'
-  };
-  appPackage.devDependencies = appPackage.devDependencies || {
+  }, appPackage.dependencies);
+  
+  appPackage.devDependencies = Object.assign({
     '@types/enzyme': '^2.8.1',
     '@types/react-redux': '^4.4.45',
     'enzyme': '^2.9.1',
     'husky': '^0.14.1',
     'react-addons-test-utils': '15.4.2',
-  };
+  }, appPackage.devDependencies);
 
   // Setup the script rules
   appPackage.scripts = {
