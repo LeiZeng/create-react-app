@@ -38,8 +38,37 @@ module.exports = function(
   const useYarn = fs.existsSync(path.join(appPath, 'yarn.lock'));
 
   // Copy over some of the devDependencies
-  appPackage.dependencies = appPackage.dependencies || {};
-  appPackage.devDependencies = appPackage.devDependencies || {};
+  appPackage.dependencies = appPackage.dependencies || {
+    '@types/jest': '^20.0.1',
+    '@types/node': '^8.0.1',
+    '@types/react': '^15.0.31',
+    '@types/react-dom': '^15.5.0',
+    '@types/react-redux': '^4.4.45',
+    '@types/react-router': '^4.0.12',
+    '@types/react-router-redux': '^5.0.3',
+    '@types/redux-storage': '^4.0.7',
+    'history': '^4.6.0',
+    'most': '^1.4.1',
+    'react': '^15.6.1',
+    'react-dom': '^15.6.1',
+    'react-redux': '^5.0.5',
+    'react-router': '^4.1.1',
+    'react-router-redux': '^5.0.0-alpha.6',
+    'redux': '^3.7.0',
+    'redux-logger': '^3.0.6',
+    'redux-most': '^0.5.2',
+    'redux-storage': '^4.1.2',
+    'redux-storage-decorator-filter': '^1.1.8',
+    'redux-storage-engine-localstorage': '^1.1.4',
+    'redux-thunk': '^2.2.0'
+  };
+  appPackage.devDependencies = appPackage.devDependencies || {
+    '@types/enzyme': '^2.8.1',
+    '@types/react-redux': '^4.4.45',
+    'enzyme': '^2.9.1',
+    'husky': '^0.14.1',
+    'react-addons-test-utils': '15.4.2',
+  };
 
   // Setup the script rules
   appPackage.scripts = {
@@ -49,8 +78,6 @@ module.exports = function(
     test: 'react-scripts-ts-tw test --env=jsdom',
     eject: 'react-scripts-ts-tw eject',
   };
-
-  console.log(appPackage);
 
   fs.writeFileSync(
     path.join(appPath, 'package.json'),
@@ -103,10 +130,10 @@ module.exports = function(
 
   if (useYarn) {
     command = 'yarnpkg';
-    args = ['add'];
+    args = [''];
   } else {
     command = 'npm';
-    args = ['install', '--save', verbose && '--verbose'].filter(e => e);
+    args = ['install', verbose && '--verbose'].filter(e => e);
   }
 
   // Install additional template dependencies, if present
@@ -124,19 +151,13 @@ module.exports = function(
     fs.unlinkSync(templateDependenciesPath);
   }
 
-  const types = [
-    '@types/node',
-    '@types/react',
-    '@types/react-dom',
-    '@types/jest',
-  ];
 
-  console.log(`Installing ${types.join(', ')} ${command}...`);
+  console.log(`${command} Installing...`);
   console.log();
 
-  const proc = spawn.sync(command, args.concat(types), { stdio: 'inherit' });
+  const proc = spawn.sync(command, args, { stdio: 'inherit' });
   if (proc.status !== 0) {
-    console.error(`\`${command} ${args.concat(types).join(' ')}\` failed`);
+    console.error(`\`${command} ${args.join(' ')}\` failed`);
     return;
   }
 
