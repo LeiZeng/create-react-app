@@ -43,6 +43,7 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
+    prepush: 'CI=true npm test', 
     start: 'react-scripts-ts-tw start',
     build: 'react-scripts-ts-tw build',
     test: 'react-scripts-ts-tw test --env=jsdom',
