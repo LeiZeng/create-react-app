@@ -43,10 +43,10 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
-    start: 'react-scripts-ts start',
-    build: 'react-scripts-ts build',
-    test: 'react-scripts-ts test --env=jsdom',
-    eject: 'react-scripts-ts eject',
+    start: 'react-scripts-ts-tw start',
+    build: 'react-scripts-ts-tw build',
+    test: 'react-scripts-ts-tw test --env=jsdom',
+    eject: 'react-scripts-ts-tw eject',
   };
 
   console.log(appPackage);
