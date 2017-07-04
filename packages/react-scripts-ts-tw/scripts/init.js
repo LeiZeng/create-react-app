@@ -65,7 +65,7 @@ module.exports = function(
 
   appPackage.devDependencies = Object.assign({
     '@types/enzyme': '^2.8.1',
-    'typescript': '^2.3.4',
+    'typescript': '2.3.4',
     'enzyme': '^2.9.1',
     'husky': '^0.14.1',
     'react-addons-test-utils': '15.4.2',
