@@ -62,10 +62,10 @@ module.exports = function(
     'redux-storage-engine-localstorage': '^1.1.4',
     'redux-thunk': '^2.2.0'
   }, appPackage.dependencies);
-  
+
   appPackage.devDependencies = Object.assign({
     '@types/enzyme': '^2.8.1',
-    '@types/react-redux': '^4.4.45',
+    'typescript': '^2.3.4',
     'enzyme': '^2.9.1',
     'husky': '^0.14.1',
     'react-addons-test-utils': '15.4.2',
@@ -73,7 +73,7 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
-    prepush: 'CI=true npm test', 
+    prepush: 'CI=true npm test',
     start: 'react-scripts-ts-tw start',
     build: 'react-scripts-ts-tw build',
     test: 'react-scripts-ts-tw test --env=jsdom',
