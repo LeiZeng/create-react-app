@@ -36,7 +36,7 @@ module.exports = function(
   const ownPath = path.join(appPath, 'node_modules', ownPackageName);
   const appPackage = require(path.join(appPath, 'package.json'));
   const useYarn = fs.existsSync(path.join(appPath, 'yarn.lock'));
-
+console.log('parameters----:', appPath, originalDirectory, template)
   // Copy over some of the devDependencies
   appPackage.dependencies = Object.assign({
     '@types/jest': '^20.0.1',
@@ -48,6 +48,7 @@ module.exports = function(
     '@types/react-router-redux': '^5.0.3',
     '@types/redux-storage': '^4.0.7',
     'history': '^4.6.0',
+    'isomorphic-fetch': '^2.2.1',
     'most': '^1.4.1',
     'react': '^15.6.1',
     'react-dom': '^15.6.1',
@@ -65,8 +66,11 @@ module.exports = function(
 
   appPackage.devDependencies = Object.assign({
     '@types/enzyme': '^2.8.1',
+    '@types/fetch-mock': '^5.8.3',
+    '@types/isomorphic-fetch': '0.0.34',
     'typescript': '2.3.4',
     'enzyme': '^2.9.1',
+    'fetch-mock': '^5.12.1',
     'husky': '^0.14.1',
     'react-addons-test-utils': '15.4.2',
   }, appPackage.devDependencies);
